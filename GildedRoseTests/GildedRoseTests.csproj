@@ -24,4 +24,8 @@
         <ProjectReference Include="..\GildedRose\GildedRose.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="RuleTests\" />
+    </ItemGroup>
+
 </Project>
