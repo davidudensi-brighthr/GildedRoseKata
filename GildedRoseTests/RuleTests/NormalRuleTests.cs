@@ -50,4 +50,30 @@ public class NormalRuleTests
         sut.UpdateQuality(item);
         Assert.Equal(8, item.Quality);
     }
+
+    [Theory]
+    [InlineData(10, 8)]
+    [InlineData(2, 0)]
+    [InlineData(0, 0)]
+    public void UpdateQuality_WhenMultiplier(int quality, int expected)
+    {
+        var item = new Item { Name = "+5 Dexterity Vest", SellIn = 5, Quality = quality };
+        var sut = new NormalRule(2);
+
+        sut.UpdateQuality(item);
+        Assert.Equal(expected, item.Quality);
+    }
+
+    [Theory]
+    [InlineData(10, 6)]
+    [InlineData(2, 0)]
+    [InlineData(0, 0)]
+    public void UpdateQuality_WhenMultiplierAndSellInPassed(int quality, int expected)
+    {
+        var item = new Item { Name = "+5 Dexterity Vest", SellIn = -5, Quality = quality };
+        var sut = new NormalRule(2);
+
+        sut.UpdateQuality(item);
+        Assert.Equal(expected, item.Quality);
+    }
 }
