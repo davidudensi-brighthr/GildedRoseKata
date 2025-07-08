@@ -1,6 +1,6 @@
 ﻿using GildedRoseKata;
 
-namespace GildedRose
+namespace GildedRose.Rules
 {
     public interface IRule
     {

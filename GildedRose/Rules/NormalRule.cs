@@ -1,12 +1,16 @@
 ﻿using GildedRoseKata;
 
-namespace GildedRose
+namespace GildedRose.Rules
 {
     public class NormalRule : IRule
     {
         public void UpdateQuality(Item item)
         {
-            if (item.Quality > 0)
+            if (item.SellIn < 0)
+            {
+                item.Quality = item.Quality - 2;
+            }
+            else if (item.Quality > 0)
             {
                 item.Quality = item.Quality - 1;
             }

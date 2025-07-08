@@ -1,4 +1,4 @@
-﻿using GildedRose;
+﻿using GildedRose.Rules;
 using GildedRoseKata;
 
 namespace GildedRoseTests
@@ -16,12 +16,12 @@ namespace GildedRoseTests
         }
 
         [Fact]
-        public void UpdateQuality_ShouldNotReduce_LessZero()
+        public void UpdateQuality_QualityShouldNotReduce_LessZero()
         {
             var item = new Item { Name = "+5 Dexterity Vest", SellIn = 10, Quality = 5 };
             var sut = new NormalRule();
 
-            for(int i = 0; i < 6; i++)
+            for (int i = 0; i < 6; i++)
             {
                 sut.UpdateQuality(item);
             }
@@ -39,6 +39,16 @@ namespace GildedRoseTests
                 sut.UpdateQuality(item);
             }
             Assert.Equal(-1, item.SellIn);
+        }
+
+        [Fact]
+        public void UpdateQuality_WhenSellInIsPassed_QualityShouldReduceTwiceAsFast()
+        {
+            var item = new Item { Name = "+5 Dexterity Vest", SellIn = -1, Quality = 10 };
+            var sut = new NormalRule();
+
+            sut.UpdateQuality(item);
+            Assert.Equal(8, item.Quality);
         }
     }
 }
