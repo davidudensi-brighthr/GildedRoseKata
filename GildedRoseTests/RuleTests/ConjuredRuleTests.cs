@@ -3,15 +3,15 @@ using GildedRoseKata;
 
 namespace GildedRoseTests.RuleTests;
 
-public class NormalRuleTests
+public class ConjuredRuleTests
 {
     [Fact]
-    public void UpdateQuality_Should_ReduceQualityBy1()
+    public void UpdateQuality_Should_ReduceQualityBy2()
     {
         var item = new Item { Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20 };
-        var sut = new NormalRule();
+        var sut = new ConjuredRule();
         sut.UpdateQuality(item);
-        Assert.Equal(19, item.Quality);
+        Assert.Equal(18, item.Quality);
         Assert.Equal(9, item.SellIn);
     }
 
@@ -19,9 +19,9 @@ public class NormalRuleTests
     public void UpdateQuality_QualityShouldNotReduce_LessZero()
     {
         var item = new Item { Name = "+5 Dexterity Vest", SellIn = 10, Quality = 5 };
-        var sut = new NormalRule();
+        var sut = new ConjuredRule();
 
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 4; i++)
         {
             sut.UpdateQuality(item);
         }
@@ -32,7 +32,7 @@ public class NormalRuleTests
     public void UpdateQuality_SellIn_ShouldReduceEachDay()
     {
         var item = new Item { Name = "+5 Dexterity Vest", SellIn = 5, Quality = 5 };
-        var sut = new NormalRule();
+        var sut = new ConjuredRule();
 
         for (int i = 0; i < 6; i++)
         {
@@ -45,9 +45,10 @@ public class NormalRuleTests
     public void UpdateQuality_WhenSellInIsPassed_QualityShouldReduceTwiceAsFast()
     {
         var item = new Item { Name = "+5 Dexterity Vest", SellIn = -1, Quality = 10 };
-        var sut = new NormalRule();
+        var sut = new ConjuredRule();
 
         sut.UpdateQuality(item);
-        Assert.Equal(8, item.Quality);
+        Assert.Equal(6, item.Quality);
     }
 }
+    

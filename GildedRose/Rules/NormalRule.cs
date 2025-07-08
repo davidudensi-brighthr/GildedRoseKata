@@ -6,9 +6,9 @@ namespace GildedRose.Rules
     {
         public void UpdateQuality(Item item)
         {
-            if (item.SellIn < 0)
+            if (item.SellIn <= 0)
             {
-                item.Quality = item.Quality - 2;
+                item.Quality = Math.Max(0, item.Quality - 2);
             }
             else if (item.Quality > 0)
             {

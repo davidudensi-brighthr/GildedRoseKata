@@ -15,7 +15,10 @@ public class GildedRoseService
         foreach (var item in _items)
         {
             var rule = item.Value;
-            rule.UpdateQuality(item.Key);
+            if (rule is not null)
+            {
+                rule.UpdateQuality(item.Key);
+            }
         }
     }
 }

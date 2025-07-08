@@ -31,10 +31,18 @@ public class Program
                 },
                 new BackstageRule()
             },
+            {            new Item
+                {
+                    Name = "Backstage passes to a TAFKAL80ETC concert",
+                    SellIn = 5,
+                    Quality = 49
+                },
+                new BackstageRule()
+            },
+            { new Item { Name = "Conjured Mana Cake", SellIn = 3, Quality = 6 }, new NormalRule()}
 
         };
-        var item9 = new Item { Name = "Conjured Mana Cake", SellIn = 3, Quality = 6 };
-        //dictionary.Add(item1, new BackstageRule());
+
         var app = new GildedRoseService(items);
 
         for (var i = 0; i < 31; i++)

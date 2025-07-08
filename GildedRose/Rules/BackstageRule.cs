@@ -6,28 +6,26 @@ namespace GildedRose.Rules
     {
         public void UpdateQuality(Item item)
         {
-            if (item.Quality == 50)
-                return;
+            item.SellIn -= 1;
 
-            if (item.SellIn == 0)
+            if (item.SellIn < 0)
             {
                 item.Quality = 0;
                 return;
             }
 
+            int increase = 1;
+
             if (item.SellIn < 5)
             {
-                item.Quality = item.Quality + 3;
-                return;
+                increase = 3;
             }
-
-            if (item.SellIn < 10)
+            else if (item.SellIn < 10)
             {
-                item.Quality = item.Quality + 2;
-                return;
+                increase = 2;
             }
 
-            item.Quality = item.Quality + 1;
+            item.Quality = Math.Min(50, item.Quality + increase);
         }
     }
 }
