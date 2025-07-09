@@ -12,10 +12,10 @@ public class GildedRoseService
 
     public void UpdateQuality()
     {
-        foreach (var item in _items)
+        foreach (KeyValuePair<Item, IRule> item in _items)
         {
             var rule = item.Value;
-            rule.UpdateQuality(item.Key);
+            rule?.UpdateQuality(item.Key);
         }
     }
 }
